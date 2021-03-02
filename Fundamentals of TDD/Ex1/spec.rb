@@ -28,6 +28,10 @@ class Person
       @first_name + ' ' + @middle_name + ' ' + @last_name
     end
   end
+
+  def full_name_with_middle_initial
+    
+  end
   
 end
 
