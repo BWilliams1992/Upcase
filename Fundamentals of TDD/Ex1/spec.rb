@@ -30,7 +30,7 @@ class Person
   end
 
   def full_name_with_middle_initial
-    
+    @first_name + ' ' + @middle_name.chr.upcase + '. ' + @last_name
   end
   
 end
