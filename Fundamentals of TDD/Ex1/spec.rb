@@ -52,6 +52,10 @@ RSpec.describe Person do
       person = Person.new()
       expect(person.full_name_with_middle_initial).to eq("Benjamin E. Williams")
     end
+    it "does not add extra spaces or period if middle name is missing" do
+      person = Person.new(middle_name: nil)
+      expect(person.full_name_with_middle_initial).to eq('Benjamin Williams')
+    end
   end
 
   describe "#initials"
