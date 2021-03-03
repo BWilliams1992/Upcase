@@ -71,5 +71,9 @@ RSpec.describe Person do
       person = Person.new
       expect(person.initials).to eq('B.E.W')
     end
+    it 'only returns 2 characters if middle name not present' do 
+      person = Person.new(middle_name:nil)
+      expect(person.initials).to eq('B.W')
+    end
   end
 end
