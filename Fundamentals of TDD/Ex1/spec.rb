@@ -36,6 +36,10 @@ class Person
         @first_name + ' ' + @middle_name.chr.upcase + '. ' + @last_name  
     end
   end
+
+  def initials 
+    
+  end
   
 end
 
