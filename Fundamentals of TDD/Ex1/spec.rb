@@ -38,7 +38,7 @@ class Person
   end
 
   def initials 
-    
+    @first_name.chr.upcase + '.' + @middle_name.chr.upcase + '.' + @last_name.chr.upcase
   end
   
 end
