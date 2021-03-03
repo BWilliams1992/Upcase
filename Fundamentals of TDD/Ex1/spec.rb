@@ -35,7 +35,6 @@ class Person
     else
         @first_name + ' ' + @middle_name.chr.upcase + '. ' + @last_name  
     end
-
   end
   
 end
@@ -63,5 +62,10 @@ RSpec.describe Person do
     end
   end
 
-  describe "#initials"
+  describe "#initials" do
+    it 'returns the initials of the name' do
+      person = Person.new
+      expect(person.initials).to eq('B.E.W')
+    end
+  end
 end
