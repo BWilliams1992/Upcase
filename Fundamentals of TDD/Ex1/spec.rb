@@ -38,7 +38,12 @@ class Person
   end
 
   def initials 
-    @first_name.chr.upcase + '.' + @middle_name.chr.upcase + '.' + @last_name.chr.upcase
+    if @middle_name === nil 
+      @first_name.chr.upcase + @last_name.chr.upcase
+    else
+      @first_name.chr.upcase + '.' + @middle_name.chr.upcase + '.' + @last_name.chr.upcase
+    end
+
   end
   
 end
@@ -73,7 +78,7 @@ RSpec.describe Person do
     end
     it 'only returns 2 characters if middle name not present' do 
       person = Person.new(middle_name:nil)
-      expect(person.initials).to eq('B.W')
+      expect(person.initials).to eq('BW')
     end
   end
 end
