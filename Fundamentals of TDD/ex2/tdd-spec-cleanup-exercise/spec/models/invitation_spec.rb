@@ -87,31 +87,63 @@ RSpec.describe Invitation do
         invitation = build_invitation(team, new_user)
         invitation.save
         log_statement = invitation.event_log_statement
+
         expect(log_statement).to include("rookie@example.com")
       end
     end
 
     context "when the record is not saved but valid" do
       it "includes the name of the team" do
+        team_owner = create_team_owner
+        new_user = create_new_user
+        team = create_team
+        update_team_owner_with_team(team_owner, team)
+        update_team_with_owner(team,team_owner)
+        invitation = build_invitation(team, new_user)
+        invitation.save
         log_statement = invitation.event_log_statement
+
         expect(log_statement).to include("A fine team")
       end
 
       it "includes the email of the invitee" do
+        team_owner = create_team_owner
+        new_user = create_new_user
+        team = create_team
+        update_team_owner_with_team(team_owner, team)
+        update_team_with_owner(team,team_owner)
+        invitation = build_invitation(team, new_user)
+        invitation.save
         log_statement = invitation.event_log_statement
+
         expect(log_statement).to include("rookie@example.com")
       end
 
       it "includes the word 'PENDING'" do
+        team_owner = create_team_owner
+        new_user = create_new_user
+        team = create_team
+        update_team_owner_with_team(team_owner, team)
+        update_team_with_owner(team,team_owner)
+        invitation = build_invitation(team, new_user)
         log_statement = invitation.event_log_statement
+
         expect(log_statement).to include("PENDING")
       end
     end
 
     context "when the record is not saved and not valid" do
       it "includes INVALID" do
+        team_owner = create_team_owner
+        new_user = create_new_user
+        team = create_team
+        update_team_owner_with_team(team_owner, team)
+        update_team_with_owner(team,team_owner)
+        invitation = build_invitation(team, new_user)
         invitation.user = nil
+        invitation.save
         log_statement = invitation.event_log_statement
+        
         expect(log_statement).to include("INVALID")
       end
     end
