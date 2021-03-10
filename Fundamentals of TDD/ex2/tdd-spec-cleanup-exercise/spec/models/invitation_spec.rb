@@ -65,16 +65,27 @@ RSpec.describe Invitation do
 
   describe "#event_log_statement" do
     context "when the record is saved" do
-      before do
-        invitation.save
-      end
-
       it "include the name of the team" do
+        team_owner = create_team_owner
+        new_user = create_new_user
+        team = create_team
+        update_team_owner_with_team(team_owner, team)
+        update_team_with_owner(team,team_owner)
+        invitation = build_invitation(team, new_user)
+        invitation.save
         log_statement = invitation.event_log_statement
+        
         expect(log_statement).to include("A fine team")
       end
 
       it "include the email of the invitee" do
+        team_owner = create_team_owner
+        new_user = create_new_user
+        team = create_team
+        update_team_owner_with_team(team_owner, team)
+        update_team_with_owner(team,team_owner)
+        invitation = build_invitation(team, new_user)
+        invitation.save
         log_statement = invitation.event_log_statement
         expect(log_statement).to include("rookie@example.com")
       end
